@@ -33,8 +33,9 @@ public class GameMaster : MonoBehaviour
         rightDirectioner = false;
     }
 
-    public void PlayerScores ()
+    public void UserScores ()
     {
+        Debug.Log("Hola");
         pointsCounter.playerScores();
         StopUnitSpawning();
         DestroyAllElementals();

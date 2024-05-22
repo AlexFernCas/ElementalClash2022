@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 3085272985486146036}
   - component: {fileID: -8206602339827311376}
   - component: {fileID: -1564846363821994034}
-  - component: {fileID: 1268058446758997494}
-  m_Layer: 0
+  - component: {fileID: -525438156154785658}
+  m_Layer: 10
   m_Name: Earth_Right
   m_TagString: Earth_Right
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 10
   m_Sprite: {fileID: 2110485038, guid: c9b90d58fccdc1c418e4a8d98747f386, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -170,7 +170,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.12, y: 4.42}
   m_EdgeRadius: 0
---- !u!50 &1268058446758997494
+--- !u!50 &-525438156154785658
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5957684226920372549}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -196,4 +196,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7

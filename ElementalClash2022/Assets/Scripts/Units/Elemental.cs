@@ -19,7 +19,6 @@ public class Elemental : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Hola");
         switch (tag)
         {
             case ("Fire_Left"):

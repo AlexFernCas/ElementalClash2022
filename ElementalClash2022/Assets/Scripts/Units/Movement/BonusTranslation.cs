@@ -3,7 +3,7 @@ using UnityEngine;
 public class BonusTranslation : MonoBehaviour
 {
     private Pathfinder pathfinder;
-    private float speed = 20f;
+    private float speed = 2f;
     private Transform target;
     private Transform [] path;
     private int pathIndex = 0;
@@ -93,6 +93,7 @@ public class BonusTranslation : MonoBehaviour
                     break;
 
                 case PathState.RightInvertedStart:
+                    GameMaster.Instance.UserScores();
                     Destroy(gameObject);
                     return;
 
@@ -103,6 +104,7 @@ public class BonusTranslation : MonoBehaviour
                     break;
 
                 case PathState.LeftInvertedStart:
+                    GameMaster.Instance.MLAgentScores();
                     Destroy(gameObject);
                     return;
             }           

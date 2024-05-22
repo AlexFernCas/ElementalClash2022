@@ -10,10 +10,11 @@ public class Wall : MonoBehaviour
         duration = 3;
         SetActive(false);
     }
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (gameObject.tag == "userWall")
         {
+            Debug.Log("Muro");
             if(collision.gameObject.tag.Contains("Right"))
             {
                 Destroy(collision.gameObject);

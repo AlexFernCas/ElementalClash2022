@@ -5,8 +5,7 @@ public class Duplicate : MonoBehaviour
 {
     bool nextDuplicate;
     string tagName;
-    float destroyTimer;
-
+    int duplications;
     public BonusTranslation userFireUnit;
     public BonusTranslation userWaterUnit;
     public BonusTranslation userWindUnit;
@@ -16,10 +15,10 @@ public class Duplicate : MonoBehaviour
     {
         SetActive(false);
         tagName = gameObject.tag;
-        destroyTimer = 3f;
+        duplications = 0;
     }
     
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (tagName == "duplicateR" && nextDuplicate)
         {
@@ -39,6 +38,11 @@ public class Duplicate : MonoBehaviour
             {
                 Instantiate(userEarthUnit, transform.position, transform.rotation);            
             }
+            duplications += 1;
+            if (duplications >= 3)
+            {
+                Destroy(gameObject);    
+            }
         }
         nextDuplicate = !nextDuplicate;
     }
@@ -46,13 +50,7 @@ public class Duplicate : MonoBehaviour
     public void SetActive(bool set)
     {
         gameObject.SetActive(set);
-        DestroyTimer();
         nextDuplicate = true;
     }
 
-    IEnumerator DestroyTimer()
-    {
-        yield return new WaitForSeconds(destroyTimer);
-        Destroy(gameObject);
-    }
 }

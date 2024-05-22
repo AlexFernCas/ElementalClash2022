@@ -22,6 +22,7 @@ TagManager:
   - mlAgentWall
   - Wind
   - Earth
+  - duplicateR
   layers:
   - Default
   - TransparentFX
@@ -30,10 +31,10 @@ TagManager:
   - Water
   - UI
   - Buttons
+  - Bonus
   - 
   - 
-  - 
-  - 
+  - Units
   - 
   - 
   - 
@@ -58,4 +59,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer 1
+    uniqueID: 1861604479
     locked: 0

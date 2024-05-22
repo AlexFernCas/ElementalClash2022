@@ -134,7 +134,7 @@ public class Translation : MonoBehaviour
                     break;
 
                 case PathState.RightInvertedStart:
-                    GameMaster.Instance.PlayerScores();
+                    GameMaster.Instance.UserScores();
                     Destroy(gameObject);
                     return;
 

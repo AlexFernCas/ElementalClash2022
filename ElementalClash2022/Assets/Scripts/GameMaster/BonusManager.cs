@@ -4,7 +4,7 @@ using UnityEngine;
 public class BonusManager : MonoBehaviour
 {
 
-    public GameObject[] bonusPrefab;
+    public GameObject bonusPrefab;
     public Player user;
     public Player mlAgent;
     public BonusButton threeSegBonusButton;
@@ -12,10 +12,12 @@ public class BonusManager : MonoBehaviour
     public BonusButton duplicateBonusButton;
     public Wall userWall;
     public Wall mlAgentWall;
+
+    public Duplicate userDuplicate;
     //public Duplicate mlAgentDuplicate;
     public Transform bonusSpawnPoint;
-    private int bonusTimer;
     private int [] bonus;
+    private int bonusTimer;
     private int bonusIndex;
     private int firstBonusTimer;
     private int takedBonus;
@@ -24,10 +26,10 @@ public class BonusManager : MonoBehaviour
     public void Start()
     {
         thereIsBonus = false;
+        bonusPrefab.SetActive(false);
         firstBonusTimer = 1;
         bonusTimer = 1;
         bonusIndex = 0;
-        takedBonus = 0;
         bonus = new int [] {0, 1, 2};
         Shuffle(bonus);
         StartCoroutine(BonusPrefab());
@@ -38,30 +40,40 @@ public class BonusManager : MonoBehaviour
         while(true)
         {
             yield return new WaitForSeconds(bonusTimer);
-            if (!thereIsBonus)
+            if (!bonusPrefab.activeInHierarchy)
             {
                 thereIsBonus = true;
-                GameObject bns = Instantiate(bonusPrefab[bonus[bonusIndex]], bonusSpawnPoint.position, bonusSpawnPoint.rotation);
-
-                TakeBonus bonus1 = bns.GetComponent<TakeBonus>();
-            
-                bonus1.SetBonusManager(this);
-                //bonus1.SetMlAgent(mlAgent.GetComponent<MLAgent>());
-                BonusIndex();
+                bonusPrefab.SetActive(true);
             }
             yield return null;
         }
     }
 
-    public void TakedBonus(){
-        takedBonus++;
+    public void UserTakedBonus(){
+        if (bonus[bonusIndex] == 0)
+        {
+            //ActiveWallBonusButton();
+            ActiveThreeSegBonusButton();
+        } 
+        else if (bonus[bonusIndex] == 1)
+        {
+            //ActiveDuplicateBonusButton();
+            ActiveThreeSegBonusButton();
+        }
+        else if (bonus[bonusIndex] == 2)
+        {
+            ActiveThreeSegBonusButton();
+        }
+        BonusIndex();
+    }
+
+    public void MlAgentTakedBonus(){
         if (takedBonus >= 2)
         {
             thereIsBonus = false;
             takedBonus = 0;
         }
     }
-
     private void BonusIndex()
     {
         bonusIndex++;
@@ -135,13 +147,13 @@ public class BonusManager : MonoBehaviour
            duplicateBonusButton.SetActive(true);
         }        
     }
-/*
-    public void UseDuplicateBonus()
+
+    public void UserUseDuplicateBonus()
     {
         duplicateBonusButton.SetActive(false);
         userDuplicate.SetActive(true);
     }
-
+/*
     public void MlAgentDuplicateBonus()
     {
         mlAgentDuplicate.SetActive(true);
