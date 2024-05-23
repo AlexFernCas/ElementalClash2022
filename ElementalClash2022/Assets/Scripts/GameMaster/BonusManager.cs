@@ -20,12 +20,9 @@ public class BonusManager : MonoBehaviour
     private int bonusTimer;
     private int bonusIndex;
     private int firstBonusTimer;
-    private int takedBonus;
-    public bool thereIsBonus;
 
     public void Start()
     {
-        thereIsBonus = false;
         bonusPrefab.SetActive(false);
         firstBonusTimer = 1;
         bonusTimer = 1;
@@ -42,7 +39,6 @@ public class BonusManager : MonoBehaviour
             yield return new WaitForSeconds(bonusTimer);
             if (!bonusPrefab.activeInHierarchy)
             {
-                thereIsBonus = true;
                 AudioManager.Instance.PlayBonusSpawnSound();
                 bonusPrefab.SetActive(true);
             }
@@ -69,12 +65,9 @@ public class BonusManager : MonoBehaviour
     }
 
     public void MlAgentTakedBonus(){
-        if (takedBonus >= 2)
-        {
-            thereIsBonus = false;
-            takedBonus = 0;
-        }
+
     }
+
     private void BonusIndex()
     {
         bonusIndex++;

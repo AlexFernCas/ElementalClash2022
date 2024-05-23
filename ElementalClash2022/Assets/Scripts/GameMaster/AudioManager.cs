@@ -59,4 +59,18 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(endGame);
     }*/
+
+    public void Mute()
+    {
+        if (audioSource.volume == 50f)
+        {
+            audioSource.volume = 0f;
+        }
+        else 
+        {
+            audioSource.volume = 50f;
+        }
+        
+    }
+
 }

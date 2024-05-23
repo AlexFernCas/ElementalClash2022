@@ -3,25 +3,31 @@ using TMPro;
 
 public class PauseManager : MonoBehaviour
 {
-    private bool isPaused = false;
-    public TMP_Text tMP_Text;
+    public GameObject pauseButton;
 
     void Start()
     {
-        tMP_Text.text = "PAUSE";
+        pauseButton.SetActive(true);
+        gameObject.SetActive(false);
     }
     public void PauseGame()
     {
-        isPaused = !isPaused; 
-        if (isPaused)
-        {
-            Time.timeScale = 0f;
-            tMP_Text.text = "RESUME";
-        }
-        else 
-        {
-            Time.timeScale = 1f;
-            tMP_Text.text = "PAUSE";
-        }
+
+        Time.timeScale = 0f;
+        pauseButton.SetActive(false);
+        gameObject.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        pauseButton.SetActive(true);
+        gameObject.SetActive(false);
+    }
+
+    public void Mute ()
+    {
+        AudioManager.Instance.Mute();
+        CamaraAudioSource.Instance.Mute();
     }
 }
