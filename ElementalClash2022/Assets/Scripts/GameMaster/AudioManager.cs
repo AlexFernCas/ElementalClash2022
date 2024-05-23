@@ -6,10 +6,10 @@ public class AudioManager : MonoBehaviour
     public AudioClip unitDead;
     public AudioClip unitSpawn;
     public AudioClip unitDamage;
-    public AudioClip bonusSpawn;
+    public AudioClip bonusSpawn;/*
     public AudioClip playerScores;
     public AudioClip mlAgentScores;
-    public AudioClip endGame;
+    public AudioClip endGame;*/
     private AudioSource audioSource;
     
     void Start()
@@ -24,26 +24,27 @@ public class AudioManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayUnitDeadSound()
-    {
-        audioSource.PlayOneShot(unitDead);
-    }
 
     public void PlayUnitSpawnSound()
     {
         audioSource.PlayOneShot(unitSpawn);
     }
+    public void PlayUnitDeadSound()
+    {
+        audioSource.PlayOneShot(unitDead);
+    }
+
 
     public void PlayUnitDamageSound()
     {
         audioSource.PlayOneShot(unitDamage);
     }
-
+ 
     public void PlayBonusSpawnSound()
     {
         audioSource.PlayOneShot(bonusSpawn);
     }
-
+/*
     public void PlayPlayerScoresSound()
     {
         audioSource.PlayOneShot(playerScores);
@@ -57,5 +58,5 @@ public class AudioManager : MonoBehaviour
     public void PlayEndGameSound()
     {
         audioSource.PlayOneShot(endGame);
-    }
+    }*/
 }

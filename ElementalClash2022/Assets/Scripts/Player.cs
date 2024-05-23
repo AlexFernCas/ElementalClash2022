@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
         Wind,
         Earth,
         None
-    }
+        }
     private Element currentElement;
     private int earthPower;
     private int firePower;
@@ -66,6 +66,10 @@ public class Player : MonoBehaviour
                     SpawnUnit();
                     yield return new WaitForSeconds(spawnTimer);
                 }
+            } 
+            else
+            {
+                yield return new WaitForSeconds(1.5f);
             }
             yield return new WaitForSeconds(wavesTimer);
         }
@@ -95,7 +99,8 @@ public class Player : MonoBehaviour
         }
 
         int index = GetElementIndex();
-        Instantiate(unitsPrefab[index], transform.position, transform.rotation); 
+        Instantiate(unitsPrefab[index], transform.position, transform.rotation);
+        AudioManager.Instance.PlayUnitSpawnSound(); 
         
     }
 

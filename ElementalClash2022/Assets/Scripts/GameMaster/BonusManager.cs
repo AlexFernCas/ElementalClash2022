@@ -43,6 +43,7 @@ public class BonusManager : MonoBehaviour
             if (!bonusPrefab.activeInHierarchy)
             {
                 thereIsBonus = true;
+                AudioManager.Instance.PlayBonusSpawnSound();
                 bonusPrefab.SetActive(true);
             }
             yield return null;
