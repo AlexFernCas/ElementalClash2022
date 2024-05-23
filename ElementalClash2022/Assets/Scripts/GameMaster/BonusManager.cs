@@ -49,13 +49,11 @@ public class BonusManager : MonoBehaviour
     public void UserTakedBonus(){
         if (bonus[bonusIndex] == 0)
         {
-            //ActiveWallBonusButton();
-            ActiveThreeSegBonusButton();
+            ActiveWallBonusButton();
         } 
         else if (bonus[bonusIndex] == 1)
         {
-            //ActiveDuplicateBonusButton();
-            ActiveThreeSegBonusButton();
+            ActiveDuplicateBonusButton();
         }
         else if (bonus[bonusIndex] == 2)
         {

@@ -38,6 +38,5 @@ public class Wall : MonoBehaviour
     IEnumerator Descative(){
         yield return new WaitForSeconds(duration);
         SetActive(false);
-
     }
 }

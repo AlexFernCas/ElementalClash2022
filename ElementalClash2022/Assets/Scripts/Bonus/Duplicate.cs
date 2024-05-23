@@ -41,7 +41,7 @@ public class Duplicate : MonoBehaviour
             duplications += 1;
             if (duplications >= 3)
             {
-                Destroy(gameObject);    
+                gameObject.SetActive(false);   
             }
         }
         nextDuplicate = !nextDuplicate;
