@@ -7,14 +7,13 @@ public class CamaraAudioSource : MonoBehaviour
     public static CamaraAudioSource Instance;
     AudioSource audioSource;
 
-    void Start()
+    void Awake()
     {
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         audioSource = GetComponent<AudioSource>();
     }

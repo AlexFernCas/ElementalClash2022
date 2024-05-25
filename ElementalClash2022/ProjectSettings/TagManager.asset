@@ -23,6 +23,7 @@ TagManager:
   - Wind
   - Earth
   - duplicateR
+  - duplicateL
   layers:
   - Default
   - TransparentFX

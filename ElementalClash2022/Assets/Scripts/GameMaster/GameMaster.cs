@@ -16,7 +16,7 @@ public class GameMaster : MonoBehaviour
         public static bool rightCenterDirectioner;
         public static bool rightDirectioner;
 
-    void Start()
+    void Awake()
     {
         if (Instance != this)
         {
@@ -35,7 +35,6 @@ public class GameMaster : MonoBehaviour
 
     public void UserScores ()
     {
-        Debug.Log("Hola");
         pointsCounter.playerScores();
         StopUnitSpawning();
         DestroyAllElementals();

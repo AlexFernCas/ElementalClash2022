@@ -6,10 +6,10 @@ public class Duplicate : MonoBehaviour
     bool nextDuplicate;
     string tagName;
     int duplications;
-    public BonusTranslation userFireUnit;
-    public BonusTranslation userWaterUnit;
-    public BonusTranslation userWindUnit;
-    public BonusTranslation userEarthUnit;
+    public BonusTranslation fireUnit;
+    public BonusTranslation waterUnit;
+    public BonusTranslation windUnit;
+    public BonusTranslation earthUnit;
 
     void Start()
     {
@@ -24,20 +24,46 @@ public class Duplicate : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Fire_Left"))
             {
-                Instantiate(userFireUnit, transform.position, transform.rotation);          
+                Instantiate(fireUnit, transform.position, transform.rotation);          
             }
             else if (collision.gameObject.CompareTag("Water_Left"))
             {
-                Instantiate(userWaterUnit, transform.position, transform.rotation);            
+                Instantiate(waterUnit, transform.position, transform.rotation);            
             }
             else if (collision.gameObject.CompareTag("Wind_Left"))
             {
-                Instantiate(userWindUnit, transform.position, transform.rotation);            
+                Instantiate(windUnit, transform.position, transform.rotation);            
             }
             else if (collision.gameObject.CompareTag("Earth_Left"))
             {
-                Instantiate(userEarthUnit, transform.position, transform.rotation);            
+                Instantiate(earthUnit, transform.position, transform.rotation);            
             }
+            
+            duplications += 1;
+            if (duplications >= 3)
+            {
+                gameObject.SetActive(false);   
+            }
+        }
+        else if (tagName == "duplicateL" && nextDuplicate)
+        {
+            if (collision.gameObject.CompareTag("Fire_Right"))
+            {
+                Instantiate(fireUnit, transform.position, transform.rotation);          
+            }
+            else if (collision.gameObject.CompareTag("Water_Right"))
+            {
+                Instantiate(waterUnit, transform.position, transform.rotation);            
+            }
+            else if (collision.gameObject.CompareTag("Wind_Right"))
+            {
+                Instantiate(windUnit, transform.position, transform.rotation);            
+            }
+            else if (collision.gameObject.CompareTag("Earth_Right"))
+            {
+                Instantiate(earthUnit, transform.position, transform.rotation);            
+            }
+            
             duplications += 1;
             if (duplications >= 3)
             {
