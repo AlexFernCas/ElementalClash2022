@@ -1514,6 +1514,14 @@ MonoBehaviour:
   mlAgent: {fileID: 312289904}
   elements: []
   pointsCounter: {fileID: 908315890}
+  leftDirectioner: 0
+  leftBottomDirectioner: 0
+  leftTopDirectioner: 0
+  leftCenterDirectioner: 0
+  rightTopDirectioner: 0
+  rightBottomDirectioner: 0
+  rightCenterDirectioner: 0
+  rightDirectioner: 0
 --- !u!114 &283771630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,10 +1557,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f360e6cc0cf704f861c2ce5a8c03a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitDead: {fileID: 8300000, guid: 24252664d1f41c140864d611ea092c18, type: 3}
-  unitSpawn: {fileID: 8300000, guid: 7d37dcc9759a11648aa6f7b9db32b70a, type: 3}
+  camara: {fileID: 519420028}
+  unitDead: {fileID: 8300000, guid: adb159b5d3d9992489cf3887fbf377d0, type: 3}
+  unitSpawn: {fileID: 8300000, guid: d1ed8d2e4e7431240a746087cdedc2de, type: 3}
   unitDamage: {fileID: 8300000, guid: 9e8ae74c9e9be264fa23c521d67de947, type: 3}
   bonusSpawn: {fileID: 8300000, guid: a179f1025ed75224496fb1ba9d06a4eb, type: 3}
+  playerWins: {fileID: 8300000, guid: b1f07a424a6feb542ab184da6f434fd9, type: 3}
+  mlAgentWins: {fileID: 8300000, guid: 938237e15f47b7b4e90ede67a419fe97, type: 3}
 --- !u!82 &283771632
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3788,6 +3799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b3d7b28c762de4494b6d231f525c7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneL: {fileID: 225790703}
   text: {fileID: 630875855}
   user: {fileID: 905024859}
 --- !u!114 &630875855

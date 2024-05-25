@@ -3,7 +3,7 @@ using UnityEngine;
 public class Translation : MonoBehaviour
 {
     private Pathfinder pathfinder;
-    private float speed = 2f;
+    private float speed = 2.25f;
     private Transform target;
     private Transform [] path;
     private int pathIndex = 0;

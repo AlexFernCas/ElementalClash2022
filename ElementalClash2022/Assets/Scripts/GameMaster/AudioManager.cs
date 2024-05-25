@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance; 
+    public static AudioManager Instance;
+    public GameObject camara;
     public AudioClip unitDead;
     public AudioClip unitSpawn;
     public AudioClip unitDamage;
-    public AudioClip bonusSpawn;/*
-    public AudioClip playerScores;
-    public AudioClip mlAgentScores;
-    public AudioClip endGame;*/
+    public AudioClip bonusSpawn;
+    //public AudioClip playerScores;
+    //public AudioClip mlAgentScores;
+    public AudioClip playerWins;
+    public AudioClip mlAgentWins;
     private AudioSource audioSource;
+    private AudioSource camaraAudioSource;
     
     void Start()
     {
@@ -19,9 +22,9 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         audioSource = GetComponent<AudioSource>();
+        camaraAudioSource = camara.GetComponent<AudioSource>();
     }
 
 
@@ -54,11 +57,18 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(mlAgentScores);
     }
-
-    public void PlayEndGameSound()
+*/
+    public void PlayPlayerWinsSound()
     {
-        audioSource.PlayOneShot(endGame);
-    }*/
+        camaraAudioSource.volume = 0;
+        audioSource.PlayOneShot(playerWins);
+    }
+
+    public void PlayMLAgentWins()
+    {
+        camaraAudioSource.volume = 0;
+        audioSource.PlayOneShot(mlAgentWins);
+    }
 
     public void Mute()
     {

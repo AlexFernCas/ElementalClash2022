@@ -7,14 +7,14 @@ public class GameMaster : MonoBehaviour
         public Player mlAgent;
         public Elemental[] elements;
         public PointsCounter pointsCounter;
-        public static bool leftDirectioner;
-        public static bool leftBottomDirectioner;
-        public static bool leftTopDirectioner;
-        public static bool leftCenterDirectioner;
-        public static bool rightTopDirectioner;
-        public static bool rightBottomDirectioner;
-        public static bool rightCenterDirectioner;
-        public static bool rightDirectioner;
+        public bool leftDirectioner;
+        public bool leftBottomDirectioner;
+        public bool leftTopDirectioner;
+        public bool leftCenterDirectioner;
+        public bool rightTopDirectioner;
+        public bool rightBottomDirectioner;
+        public bool rightCenterDirectioner;
+        public bool rightDirectioner;
 
     void Awake()
     {
@@ -111,6 +111,7 @@ public class GameMaster : MonoBehaviour
     }
     public void ChangeLeftTopDirectioner()
     {
+        Debug.Log("Hello");
         leftTopDirectioner = !leftTopDirectioner;
     }
 

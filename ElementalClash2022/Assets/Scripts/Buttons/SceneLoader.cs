@@ -5,7 +5,7 @@ public class SceneLoader : MonoBehaviour
 {
     public void ShowBoard()
     {
-        SceneManager.LoadScene("GameBoard");
+        SceneManager.LoadScene("GameBoard", LoadSceneMode.Single);
     }
 
     public void ShowTutorial()

@@ -3,6 +3,9 @@ using TMPro;
 
 public class Message : MonoBehaviour
 {
+    public GameObject sceneL;
+
+    SceneLoader sceneLoader;
     public TMP_Text text;
     private float countdownTime = 5f;
     public Player user;
@@ -10,6 +13,7 @@ public class Message : MonoBehaviour
     void Start()
     {
         InvokeRepeating("UpdateCountdown", 0f, 1f);
+        sceneLoader = sceneL.GetComponent<SceneLoader>();
     }
 
     void Update()
@@ -50,13 +54,17 @@ public class Message : MonoBehaviour
     public void PlayerWins ()
     {
         text.enabled = true;
+        AudioManager.Instance.PlayPlayerWinsSound();
         text.text = "¡Enhorabuena! Has ganado";
+        Invoke("ShowMenu", 5f);
     }
 
     public void MlAgentWins ()
     {
         text.enabled = true;
+        AudioManager.Instance.PlayMLAgentWins();
         text.text = "¡Lástima! Has perdido";
+        Invoke("ShowMenu", 5f);
     }
 
     public void NoElement ()
@@ -75,5 +83,10 @@ public class Message : MonoBehaviour
     void HideMessage()
     {
         text.enabled = false; 
+    }
+
+    void ShowMenu()
+    {
+        sceneLoader.ShowMenu();
     }
 }

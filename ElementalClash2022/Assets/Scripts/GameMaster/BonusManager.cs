@@ -21,13 +21,15 @@ public class BonusManager : MonoBehaviour
     private int firstBonusTimer;
     private bool mlAgentDuplicateActive;
     private bool mlAgentWallActive;
-    private bool mlAgentThreeSegActivate;
+    private bool mlAgentThreeSegActive;
 
     public void Awake()
     {
+        mlAgentDuplicateActive = false;
+        mlAgentWallActive = false;
+        mlAgentThreeSegActive = false;
         bonusPrefab.SetActive(false);
-        firstBonusTimer = 10;
-        bonusTimer = 5;
+        bonusTimer = 25;
         bonusIndex = 0;
         bonus = new int [] {0, 1, 2};
         Shuffle(bonus);
@@ -35,7 +37,6 @@ public class BonusManager : MonoBehaviour
     }
     IEnumerator BonusPrefab()
     {
-        yield return new WaitForSeconds(firstBonusTimer);
         while(true)
         {
             yield return new WaitForSeconds(bonusTimer);
@@ -43,6 +44,7 @@ public class BonusManager : MonoBehaviour
             {
                 AudioManager.Instance.PlayBonusSpawnSound();
                 bonusPrefab.SetActive(true);
+                BonusIndex();
             }
             yield return null;
         }
@@ -61,7 +63,6 @@ public class BonusManager : MonoBehaviour
         {
             ActiveThreeSegBonusButton();
         }
-        BonusIndex();
     }
 
     public void MlAgentTakedBonus(){
@@ -75,9 +76,8 @@ public class BonusManager : MonoBehaviour
         }
         else if (bonus[bonusIndex] == 2)
         {
-            mlAgentThreeSegActivate = true;
+            mlAgentThreeSegActive = true;
         }
-        BonusIndex();
     }
 
     private void BonusIndex()
@@ -115,6 +115,7 @@ public class BonusManager : MonoBehaviour
     {
         if (mlAgentWallActive)
         {
+            mlAgentWallActive = false;
             mlAgentWall.SetActive(true);
         }
     }
@@ -135,8 +136,9 @@ public class BonusManager : MonoBehaviour
 
     public void MlAgentUseThreeSegBonus()
     {
-        if (mlAgentThreeSegActivate)
+        if (mlAgentThreeSegActive)
         {
+            mlAgentThreeSegActive = false;
             StartCoroutine(ThreeSegBonus(mlAgent));
         }
     }
@@ -170,6 +172,7 @@ public class BonusManager : MonoBehaviour
     {
         if (mlAgentDuplicateActive)
         {
+            mlAgentDuplicateActive = false;
             mlAgentDuplicate.SetActive(true);
         }
     }

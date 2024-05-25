@@ -35,7 +35,7 @@ public class MLAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        bool leftDirectioner = gameMaster.GetLeftDirectioner();
+        /*bool leftDirectioner = gameMaster.GetLeftDirectioner();
         bool leftBottomDirectioner = gameMaster.GetLeftBottomDirectioner();
         bool leftTopDirectioner = gameMaster.GetLeftTopDirectioner();
         bool leftCenterDirectioner = gameMaster.GetLeftCenterDirectioner();
@@ -51,7 +51,7 @@ public class MLAgent : Agent
         //sensor.AddObservation(rightDirectioner);
         //sensor.AddObservation(rightBottomDirectioner);
         //sensor.AddObservation(rightTopDirectioner);
-        //sensor.AddObservation(rightCenterDirectioner);
+        //sensor.AddObservation(rightCenterDirectioner);*/
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -125,7 +125,7 @@ public class MLAgent : Agent
     public void ChangeLeftCenterDirectioner()
     {
         leftCenterDirectioner.OnClickDirectioner();
-        gameMaster.ChangeLeftTopDirectioner();
+        gameMaster.ChangeLeftCenterDirectioner();
     }
 
     public void UseWallBonus()

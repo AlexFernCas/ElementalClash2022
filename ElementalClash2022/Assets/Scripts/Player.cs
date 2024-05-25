@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         firePower = 100;
         waterPower = 100;
         windPower = 100;
-        powerAdd = 3;
+        powerAdd = 2;
         scored = false;
         currentElement = Element.None;
         StartCoroutine(Spawn());
