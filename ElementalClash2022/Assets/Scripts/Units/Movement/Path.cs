@@ -6,6 +6,7 @@ public class Path : MonoBehaviour
  
     public Transform [] GetPath () 
     {
+        //
         path = new Transform[transform.childCount];
         for (int i = 0; i < path.Length; i++)
         {
