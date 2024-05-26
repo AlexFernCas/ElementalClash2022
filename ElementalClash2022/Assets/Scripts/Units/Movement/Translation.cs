@@ -55,7 +55,7 @@ public class Translation : MonoBehaviour
         Vector3 dir = target.position - transform.position;
         transform.Translate(speed * Time.deltaTime * dir.normalized, Space.World);
         
-        if (Vector3.Distance(transform.position, target.position) <= 0.01f)
+        if (Vector3.Distance(transform.position, target.position) <= 0.05f)
         {
             GetNextWayPoint();
         }
