@@ -111,7 +111,6 @@ public class GameMaster : MonoBehaviour
     }
     public void ChangeLeftTopDirectioner()
     {
-        Debug.Log("Hello");
         leftTopDirectioner = !leftTopDirectioner;
     }
 
