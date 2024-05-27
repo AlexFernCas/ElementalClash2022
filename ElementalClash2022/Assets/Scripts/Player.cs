@@ -11,6 +11,12 @@ public class Player : MonoBehaviour
         Earth,
         None
         }
+
+    public GameObject fireParticles;
+    public GameObject waterParticles;
+    public GameObject windParticles;
+    public GameObject earthParticles;
+
     private Element currentElement;
     private int earthPower;
     private int firePower;
@@ -27,6 +33,10 @@ public class Player : MonoBehaviour
 
     void Awake()
     { 
+        fireParticles.SetActive(false);
+        waterParticles.SetActive(false);
+        windParticles.SetActive(false);
+        earthParticles.SetActive(false);
         startTimer = 5;
         spawnTimer = 0.5f;
         wavesTimer = 2;
@@ -130,6 +140,8 @@ public class Player : MonoBehaviour
 
     public void SetFireElement()
     {
+        ResetParticles();
+        fireParticles.SetActive(true);
         currentElement = Element.Fire;
     }
 
@@ -145,6 +157,8 @@ public class Player : MonoBehaviour
 
     public void SetWaterElement()
     {
+        ResetParticles();
+        waterParticles.SetActive(true);
         currentElement = Element.Water;
     }
 
@@ -160,6 +174,8 @@ public class Player : MonoBehaviour
 
     public void SetWindElement()
     {
+        ResetParticles();
+        windParticles.SetActive(true);
         currentElement = Element.Wind;
     }
 
@@ -174,6 +190,8 @@ public class Player : MonoBehaviour
     }
     public void SetEarthElement()
     {
+        ResetParticles();
+        earthParticles.SetActive(true);
         currentElement = Element.Earth;
     }
 
@@ -205,6 +223,27 @@ public class Player : MonoBehaviour
     void RandomElement()
     {
         int randomIndex = UnityEngine.Random.Range(0, 4);
-        currentElement = (Element)randomIndex;
+        if (randomIndex == 0) {
+            SetFireElement();
+        } 
+        else if (randomIndex == 1)
+        {
+            SetWaterElement();
+        } 
+        else if (randomIndex == 2)
+        {
+            SetWindElement();
+        } else 
+        {
+            SetEarthElement();
+        }
+    }
+
+    void ResetParticles ()
+    {
+        fireParticles.SetActive(false);
+        waterParticles.SetActive(false);
+        windParticles.SetActive(false);
+        earthParticles.SetActive(false);
     }
 }
