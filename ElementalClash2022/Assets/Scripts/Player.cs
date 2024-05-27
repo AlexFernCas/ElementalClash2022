@@ -140,7 +140,9 @@ public class Player : MonoBehaviour
 
     public void SetFireElement()
     {
-        ResetParticles();
+        waterParticles.SetActive(false);
+        windParticles.SetActive(false);
+        earthParticles.SetActive(false);
         fireParticles.SetActive(true);
         currentElement = Element.Fire;
     }
@@ -157,7 +159,9 @@ public class Player : MonoBehaviour
 
     public void SetWaterElement()
     {
-        ResetParticles();
+        fireParticles.SetActive(false);
+        windParticles.SetActive(false);
+        earthParticles.SetActive(false);
         waterParticles.SetActive(true);
         currentElement = Element.Water;
     }
@@ -174,7 +178,9 @@ public class Player : MonoBehaviour
 
     public void SetWindElement()
     {
-        ResetParticles();
+        waterParticles.SetActive(false);
+        fireParticles.SetActive(false);
+        earthParticles.SetActive(false);
         windParticles.SetActive(true);
         currentElement = Element.Wind;
     }
@@ -190,7 +196,9 @@ public class Player : MonoBehaviour
     }
     public void SetEarthElement()
     {
-        ResetParticles();
+        waterParticles.SetActive(false);
+        windParticles.SetActive(false);
+        fireParticles.SetActive(false);
         earthParticles.SetActive(true);
         currentElement = Element.Earth;
     }
