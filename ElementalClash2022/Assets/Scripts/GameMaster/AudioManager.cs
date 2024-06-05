@@ -70,4 +70,14 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(mlAgentWins);
     }
 
+    public void Mute()
+    {
+        if (audioSource.volume != 0)
+        {
+            audioSource.volume = 0;
+        } else
+        {
+            audioSource.volume = 0.2f;
+        }
+    }
 }

@@ -13,6 +13,16 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("Tutorial");
     }
 
+    public void ShowTutorialElemental()
+    {
+        SceneManager.LoadScene("TutorialElemental");
+    }
+
+    public void ShowTutorialBonus()
+    {
+        SceneManager.LoadScene("TutorialBonus");
+    }
+    
     public void ShowMenu()
     {
         SceneManager.LoadScene("Menu");

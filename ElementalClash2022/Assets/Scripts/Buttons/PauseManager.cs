@@ -4,15 +4,13 @@ using TMPro;
 public class PauseManager : MonoBehaviour
 {
     public GameObject pauseButton;
-    public GameObject camera;
-
-    AudioListener cameraListener;
+    public CamaraAudioSource cameraAudio;
+    public AudioManager audioManager;
 
     void Start()
     {
         pauseButton.SetActive(true);
         gameObject.SetActive(false);
-        cameraListener = camera.GetComponent<AudioListener>();
     }
 
     public void PauseGame()
@@ -32,13 +30,16 @@ public class PauseManager : MonoBehaviour
 
     public void Mute ()
     {
-        if (cameraListener.enabled)
+        cameraAudio.Mute();
+        audioManager.Mute();
+
+        /*if (cameraListener.enabled)
         {
-            cameraListener.enabled = false;
+            //cameraListener.enabled = false;
         } 
         else
         {
-            cameraListener.enabled = true;
-        }
+           // cameraListener.enabled = true;
+        }*/
     }
 }
