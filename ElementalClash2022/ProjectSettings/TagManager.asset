@@ -24,6 +24,8 @@ TagManager:
   - Earth
   - duplicateR
   - duplicateL
+  - Top
+  - Bot
   layers:
   - Default
   - TransparentFX

@@ -35,8 +35,7 @@ public class MLAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        bool leftCenterDirectioner = gameMaster.GetLeftDirectioner();
-        /*
+        bool leftDirectioner = gameMaster.GetLeftDirectioner();
         bool leftBottomDirectioner = gameMaster.GetLeftBottomDirectioner();
         bool leftTopDirectioner = gameMaster.GetLeftTopDirectioner();
         bool leftCenterDirectioner = gameMaster.GetLeftCenterDirectioner();
@@ -44,16 +43,16 @@ public class MLAgent : Agent
         bool rightBottomDirectioner = gameMaster.GetRightBottomDirectioner();
         bool rightTopDirectioner = gameMaster.GetRightTopDirectioner();
         bool rightCenterDirectioner = gameMaster.GetRightCenterDirectioner();
-        */ 
+    
 
+        sensor.AddObservation(leftDirectioner);
+        sensor.AddObservation(leftBottomDirectioner);
+        sensor.AddObservation(leftTopDirectioner);
         sensor.AddObservation(leftCenterDirectioner);
-        //sensor.AddObservation(leftBottomDirectioner);
-        //sensor.AddObservation(leftTopDirectioner);
-        //sensor.AddObservation(leftCenterDirectioner);
-        //sensor.AddObservation(rightDirectioner);
-        //sensor.AddObservation(rightBottomDirectioner);
-        //sensor.AddObservation(rightTopDirectioner);
-        //sensor.AddObservation(rightCenterDirectioner);
+        sensor.AddObservation(rightDirectioner);
+        sensor.AddObservation(rightBottomDirectioner);
+        sensor.AddObservation(rightTopDirectioner);
+        sensor.AddObservation(rightCenterDirectioner);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -88,6 +87,22 @@ public class MLAgent : Agent
             case 6:
                 UseThreeSegBonus();
                 break;
+
+            case 7:
+                SetFireElement();
+                break;
+            
+            case 8:
+                SetWaterElement();
+                break;
+
+            case 9:
+                SetWindElement();
+                break;
+
+            case 10:
+                SetEarthElement();
+                break;
         }
     }
 
@@ -109,13 +124,13 @@ public class MLAgent : Agent
     public void ChangeRightDirectioner()
     {
         rightDirectioner.OnClickDirectioner();
-        gameMaster.ChangeRightDirectioner();
+        GameMaster.Instance.ChangeRightDirectioner();
     }
 
     public void ChangeRightTopDirectioner()
     {
         rightTopDirectioner.OnClickDirectioner();
-        gameMaster.ChangeRightTopDirectioner();
+        GameMaster.Instance.ChangeRightTopDirectioner();
     }
 
     public void ChangeRightBottomDirectioner()
@@ -133,55 +148,38 @@ public class MLAgent : Agent
     public void UseWallBonus()
     {
             bonusManager.MlAgentWallBonus();
-            AddReward(5f);
+            AddReward(0.5f);
     }
 
     public void UseThreeSegBonus()
     {
             bonusManager.MlAgentUseThreeSegBonus();
+            AddReward(0.5f);
     }
 
     public void UseDuplicateBonus()
     {
             bonusManager.MlAgentDuplicateBonus();
-    }
-    public void SimulateAction (int number)
-    {
-        switch (number)
-        {
-            case 0:
-                ChangeRightDirectioner();
-                break;
-
-            case 1:
-                ChangeRightBottomDirectioner();
-                break;
-
-            case 2:
-                ChangeRightTopDirectioner();
-                break;
-            
-            case 3:
-                ChangeLeftCenterDirectioner();
-                break;
-        }
+            AddReward(0.5f);
     }
 
-    public void SimulateBonus (int number)
+    public void SetFireElement()
     {
-        switch (number)
-        {
-            case 0:
-                bonusManager.MlAgentWallBonus();
-                break;
+        mlAgent.SetFireElement();
+    }
 
-            case 1:
-                bonusManager.MlAgentDuplicateBonus();
-                break;
+    public void SetWaterElement()
+    {
+        mlAgent.SetWaterElement();
+    }
 
-            case 2:
-                bonusManager.MlAgentUseThreeSegBonus();
-                break;
-        }
+    public void SetWindElement()
+    {
+        mlAgent.SetWindElement();
+    }
+
+    public void SetEarthElement()
+    {
+        mlAgent.SetEarthElement();
     }
 }

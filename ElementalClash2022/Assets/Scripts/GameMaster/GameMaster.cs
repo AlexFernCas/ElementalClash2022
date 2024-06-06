@@ -36,18 +36,22 @@ public class GameMaster : MonoBehaviour
     public void UserScores ()
     {
         pointsCounter.playerScores();
+        Simulator.Instance.Reset();
         StopUnitSpawning();
         DestroyAllElementals();
         if (EndGame()) return;
+        AudioManager.Instance.PlayPlayerScoresSound();
         ResumeUnitSpawning();       
     }
 
     public void MLAgentScores()
     {
         pointsCounter.mlAgentScores();
+        Simulator.Instance.Reset();
         StopUnitSpawning();
         DestroyAllElementals();
         if (EndGame()) return;
+        AudioManager.Instance.PlayMLAgentScoresSound();
         ResumeUnitSpawning();
     }
 

@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1717692509",
+        "python_version": "3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\alexa\\Documents\\GitHub\\ElementalClash2022\\ElementalClash2022\\venv\\Scripts\\mlagents-learn config\\config.yaml --run-id=20",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.3.0+cpu",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1717692529"
+    },
+    "total": 20.3790122,
+    "count": 1,
+    "self": 0.007654399999999839,
+    "children": {
+        "run_training.setup": {
+            "total": 0.08352890000000013,
+            "count": 1,
+            "self": 0.08352890000000013
+        },
+        "TrainerController.start_learning": {
+            "total": 20.287828899999997,
+            "count": 1,
+            "self": 0.00028159999999388674,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 20.2875401,
+                    "count": 1,
+                    "self": 20.2875401
+                },
+                "trainer_threads": {
+                    "total": 8.000000022434506e-07,
+                    "count": 1,
+                    "self": 8.000000022434506e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 6.400000000184036e-06,
+                    "count": 1,
+                    "self": 6.400000000184036e-06
+                }
+            }
+        }
+    }
+}

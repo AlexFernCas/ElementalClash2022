@@ -8,8 +8,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip unitSpawn;
     public AudioClip unitDamage;
     public AudioClip bonusSpawn;
-    //public AudioClip playerScores;
-    //public AudioClip mlAgentScores;
+    public AudioClip playerScores;
+    public AudioClip mlAgentScores;
     public AudioClip playerWins;
     public AudioClip mlAgentWins;
     private AudioSource audioSource;
@@ -47,7 +47,7 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(bonusSpawn);
     }
-/*
+
     public void PlayPlayerScoresSound()
     {
         audioSource.PlayOneShot(playerScores);
@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour
     {
         audioSource.PlayOneShot(mlAgentScores);
     }
-*/
+
     public void PlayPlayerWinsSound()
     {
         camaraAudioSource.volume = 0;

@@ -64,10 +64,10 @@ public class Player : MonoBehaviour
                 yield return new WaitForSeconds(wavesTimer);  
             }
                 
-            if (gameObject.CompareTag("Agent"))
+            /*if (gameObject.CompareTag("Agent"))
             {
                RandomElement();
-            }
+            }*/
 
             if (currentElement != Element.None)
             {
