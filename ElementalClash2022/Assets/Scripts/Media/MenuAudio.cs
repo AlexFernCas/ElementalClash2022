@@ -6,16 +6,13 @@ public class MenuAudio : MonoBehaviour
 
     private void Awake()
     {
-        //
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
-        else
-        {
-            Destroy();
-        }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Destroy()

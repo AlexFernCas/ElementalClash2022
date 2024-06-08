@@ -5,11 +5,14 @@ public class Simulator : MonoBehaviour
 {
     public static Simulator Instance;
     private int action;
-    public MLAgent mlAgent;
-
+    bool noChange;
+    public Player mlAgent;
     public int[] elementsTop;
     public int[] elementsBot;
     readonly System.Random random = new System.Random();
+    float elementSuccessProp;
+    float elementFailProp;
+    float directionerSuccesProp;
 
     void Start()
     {
@@ -21,52 +24,69 @@ public class Simulator : MonoBehaviour
 
         elementsTop = new int[4];
         elementsBot = new int[4];
-        int randomNumber = random.Next(0, 4);
-
-        if (randomNumber == 0)
-        {
-            mlAgent.SetFireElement();
-        }
-        else if (randomNumber == 1)
-        {
-            mlAgent.SetWaterElement();
-        }
-        else if (randomNumber == 2)
-        {
-            mlAgent.SetWindElement();
-        }
-        else
-        {
-            mlAgent.SetEarthElement();
-        }
-
+        RandomElement();
         StartCoroutine(Action());
+
+        if (Difficult.Instance.GetLevel() == Difficult.Level.Easy)
+        {
+            elementSuccessProp = 0.65f;
+            elementFailProp = 0.15f;
+            directionerSuccesProp = 0.65f;
+
+        } else if (Difficult.Instance.GetLevel() == Difficult.Level.Medium)
+        {
+            elementSuccessProp = 0.75f;
+            elementFailProp = 0.09f;
+            directionerSuccesProp = 0.75f;
+
+        } else if (Difficult.Instance.GetLevel() == Difficult.Level.Hard)
+        {
+            elementSuccessProp = 0.85f;
+            elementFailProp = 0.05f;
+            directionerSuccesProp = 0.90f;
+        }
     }
 
     public IEnumerator Action()
     {
         while (true)
         {
+            if (SumElements(elementsTop)+SumElements(elementsBot) >= 5)
+            {
+                BonusManager.Instance.MlAgentWallBonus();
+            }
+            
             double randomNum = random.NextDouble();
 
-            if (randomNum < 0.11)
+            if (randomNum < 0.15)
             {
-                mlAgent.ChangeLeftCenterDirectioner();
+                Debug.Log("1");
+                GameMaster.Instance.ChangeLeftCenterDirectioner();
             }
-            else if (randomNum < 0.51)
+            else if (randomNum < 0.5)
             {
-                mlAgent.ChangeRightBottomDirectioner();
+                Debug.Log("2");
+                GameMaster.Instance.ChangeRightBottomDirectioner();
             }
-            else if (randomNum < 0.90)
+            else if (randomNum < 0.85)
             {
-                mlAgent.ChangeRightTopDirectioner();
+                Debug.Log("3");
+                GameMaster.Instance.ChangeRightTopDirectioner();
             }
             else
             {
-                mlAgent.ChangeRightDirectioner();
+                Debug.Log("4");
+                GameMaster.Instance.ChangeRightDirectioner();
             }
 
-            yield return new WaitForSeconds(4f);
+            if(!noChange)
+            {
+                RandomElement();
+            }
+            noChange = !noChange;
+            yield return new WaitForSeconds(3f);
+            BonusManager.Instance.MlAgentDuplicateBonus();
+            BonusManager.Instance.MlAgentUseThreeSegBonus();
         }
     }
 
@@ -74,177 +94,97 @@ public class Simulator : MonoBehaviour
     {
         int index = GetIndexOfMaxElement(elementsTop);
         double randomValue = random.NextDouble();
+
         if (SumElements(elementsTop) > SumElements(elementsBot))
         {
-            switch (index)
+            if (randomValue < directionerSuccesProp && GameMaster.Instance.GetRightDirectioner())
             {
-                case 0:
-                    if (randomValue < 0.65f)
-                    {
-                        mlAgent.SetWaterElement();
-                    }
-                    else if (randomValue < 0.76f)
-                    {
-                        mlAgent.SetFireElement();
-                    }
-                    else if (randomValue < 0.88f)
-                    {
-                        mlAgent.SetWindElement();
-                    }
-                    else
-                    {
-                        mlAgent.SetEarthElement();
-                    }
-                    break;
-
-                case 1:
-                    if (randomValue < 0.65f)
-                    {
-                        mlAgent.SetEarthElement();
-                    }
-                    else if (randomValue < 0.76f)
-                    {
-                        mlAgent.SetFireElement();
-                    }
-                    else if (randomValue < 0.88f)
-                    {
-                        mlAgent.SetWindElement();
-                    }
-                    else
-                    {
-                        mlAgent.SetWaterElement();
-                    }
-                    break;
-
-                case 2:
-                    if (randomValue < 0.65f)
-                    {
-                        mlAgent.SetFireElement();
-                    }
-                    else if (randomValue < 0.76f)
-                    {
-                        mlAgent.SetWaterElement();
-                    }
-                    else if (randomValue < 0.88f)
-                    {
-                        mlAgent.SetWindElement();
-                    }
-                    else
-                    {
-                        mlAgent.SetEarthElement();
-                    }
-                    break;
-
-                case 3:
-                    if (randomValue < 0.65f)
-                    {
-                        mlAgent.SetWindElement();
-                    }
-                    else if (randomValue < 0.76f)
-                    {
-                        mlAgent.SetFireElement();
-                    }
-                    else if (randomValue < 0.88f)
-                    {
-                        mlAgent.SetWaterElement();
-                    }
-                    else
-                    {
-                        mlAgent.SetEarthElement();
-                    }
-                    break;
+                GameMaster.Instance.ChangeRightDirectioner();
             }
-
-            if (randomValue < 0.80f && GameMaster.Instance.GetRightDirectioner())
+        } else {            
+            if (randomValue < directionerSuccesProp && !GameMaster.Instance.GetRightDirectioner())
             {
                 GameMaster.Instance.ChangeRightDirectioner();
             }
         }
-        else if (SumElements(elementsTop) < SumElements(elementsBot))
+
+        switch (index)
         {
-            switch (index)
-            {
-                case 0:
-                    if (randomValue < 0.65f)
-                    {
-                        mlAgent.SetWaterElement();
-                    }
-                    else if (randomValue < 0.76f)
-                    {
-                        mlAgent.SetFireElement();
-                    }
-                    else if (randomValue < 0.88f)
-                    {
-                        mlAgent.SetWindElement();
-                    }
-                    else
-                    {
-                        mlAgent.SetEarthElement();
-                    }
-                    break;
+            case 0:
+                if (randomValue < elementSuccessProp)
+                {
+                    mlAgent.SetWaterElement();
+                }
+                else if (randomValue < elementSuccessProp + elementFailProp)                    
+                {
+                    mlAgent.SetFireElement();
+                }
+                else if (randomValue < elementSuccessProp + elementFailProp*2)
+                {
+                    mlAgent.SetWindElement();
+                }
+                else
+                {
+                    mlAgent.SetEarthElement();
+                }
+                break;
 
-                case 1:
-                    if (randomValue < 0.65f)
-                    {
-                        mlAgent.SetEarthElement();
-                    }
-                    else if (randomValue < 0.76f)
-                    {
-                        mlAgent.SetFireElement();
-                    }
-                    else if (randomValue < 0.88f)
-                    {
-                        mlAgent.SetWindElement();
-                    }
-                    else
-                    {
-                        mlAgent.SetWaterElement();
-                    }
-                    break;
+            case 1:
+                if (randomValue < elementSuccessProp)
+                {
+                    mlAgent.SetEarthElement();
+                }
+                else if (randomValue < elementSuccessProp + elementFailProp)
+                {
+                    mlAgent.SetFireElement();
+                }
+                else if (randomValue < elementSuccessProp + elementFailProp*2)
+                {
+                    mlAgent.SetWindElement();
+                }
+                else
+                {
+                    mlAgent.SetWaterElement();
+                }
+                break;
 
-                case 2:
-                    if (randomValue < 0.65f)
-                    {
-                        mlAgent.SetFireElement();
-                    }
-                    else if (randomValue < 0.76f)
-                    {
-                        mlAgent.SetWaterElement();
-                    }
-                    else if (randomValue < 0.88f)
-                    {
-                        mlAgent.SetWindElement();
-                    }
-                    else
-                    {
-                        mlAgent.SetEarthElement();
-                    }
-                    break;
+            case 2:
+                if (randomValue <  elementSuccessProp)
+                {
+                    mlAgent.SetFireElement();
+                }
+                else if (randomValue < elementSuccessProp + elementFailProp)
+                {
+                    mlAgent.SetWaterElement();
+                }
+                else if (randomValue < elementSuccessProp + elementFailProp*2)
+                {
+                    mlAgent.SetWindElement();
+                }
+                else
+                {
+                    mlAgent.SetEarthElement();
+                }
+                break;
 
-                case 3:
-                    if (randomValue < 0.65f)
-                    {
-                        mlAgent.SetWindElement();
-                    }
-                    else if (randomValue < 0.76f)
-                    {
-                        mlAgent.SetFireElement();
-                    }
-                    else if (randomValue < 0.88f)
-                    {
-                        mlAgent.SetWaterElement();
-                    }
-                    else
-                    {
-                        mlAgent.SetEarthElement();
-                    }
-                    break;
-            }
-
-            if (randomValue < 0.80f && !GameMaster.Instance.GetRightDirectioner())
-            {
-                GameMaster.Instance.ChangeRightDirectioner();
-            }
+            case 3:
+                if (randomValue < elementSuccessProp)
+                {
+                    mlAgent.SetWindElement();
+                }
+                else if (randomValue < elementSuccessProp + elementFailProp)
+                {
+                    mlAgent.SetFireElement();
+                }
+                else if (randomValue < elementSuccessProp + elementFailProp*2)
+                {
+                    mlAgent.SetWaterElement();
+                }
+                else
+                {
+                    mlAgent.SetEarthElement();
+                }
+                break;
         }
     }
 
@@ -367,4 +307,28 @@ public class Simulator : MonoBehaviour
             elementsBot[i] = 0;
         }
     }
+
+    void RandomElement()
+    {
+        int randomNumber = random.Next(0, 4);
+
+        if (randomNumber == 0)
+        {
+            mlAgent.SetFireElement();
+        }
+        else if (randomNumber == 1)
+        {
+            mlAgent.SetWaterElement();
+        }
+        else if (randomNumber == 2)
+        {
+            mlAgent.SetWindElement();
+        }
+        else
+        {
+            mlAgent.SetEarthElement();
+        }
+
+    }
+
 }

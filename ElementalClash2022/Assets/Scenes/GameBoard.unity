@@ -1028,7 +1028,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194662683}
-  - component: {fileID: 194662684}
   m_Layer: 0
   m_Name: Waypoint 1
   m_TagString: Untagged
@@ -1051,21 +1050,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1138259290}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &194662684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194662682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b64ac9ca200d38743980240d804d3ddd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mlAgent: {fileID: 312289906}
-  elementsTop: 
-  elementsBot: 
 --- !u!1 &205531569
 GameObject:
   m_ObjectHideFlags: 0
@@ -1774,6 +1758,10 @@ MonoBehaviour:
   mlAgent: {fileID: 312289904}
   elements: []
   pointsCounter: {fileID: 908315890}
+  rightDir: {fileID: 506429850}
+  rightTopDir: {fileID: 22308017}
+  rightBottomDir: {fileID: 1423608231}
+  leftCenterDir: {fileID: 1784582482}
   leftDirectioner: 0
   leftBottomDirectioner: 0
   leftTopDirectioner: 0
@@ -1934,7 +1922,6 @@ GameObject:
   - component: {fileID: 312289902}
   - component: {fileID: 312289904}
   - component: {fileID: 312289907}
-  - component: {fileID: 312289906}
   m_Layer: 0
   m_Name: MLAgent
   m_TagString: Agent
@@ -2033,30 +2020,6 @@ MonoBehaviour:
   unitsByWave: 0
   unitsCost: 0
   spawnTimer: 0
---- !u!114 &312289906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 312289901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c3be437ebcd3714a9e71be55a318b62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
-  gMaster: {fileID: 283771627}
-  mlAgent: {fileID: 312289904}
-  rightDirectioner: {fileID: 506429850}
-  rightTopDirectioner: {fileID: 22308017}
-  rightBottomDirectioner: {fileID: 1423608231}
-  leftCenterDirectioner: {fileID: 1784582482}
-  lastPlayerScore: 0
-  lastMLAgentscore: 0
 --- !u!114 &312289907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2066,27 +2029,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 312289901}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Script: {fileID: 11500000, guid: b64ac9ca200d38743980240d804d3ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BrainParameters:
-    VectorObservationSize: 8
-    NumStackedVectorObservations: 1
-    m_ActionSpec:
-      m_NumContinuousActions: 0
-      BranchSizes: 01000000
-    VectorActionSize: 01000000
-    VectorActionDescriptions: []
-    VectorActionSpaceType: 0
-    hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: My Behaviour
-  TeamId: 0
-  m_UseChildSensors: 1
-  m_UseChildActuators: 1
-  m_ObservableAttributeHandling: 0
+  mlAgent: {fileID: 312289904}
+  elementsTop: 
+  elementsBot: 
 --- !u!1 &313967487
 GameObject:
   m_ObjectHideFlags: 0
@@ -8213,7 +8161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d5ff6004327db40867c605803be74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulator: {fileID: 194662684}
+  simulator: {fileID: 312289907}
 --- !u!1 &1101845957
 GameObject:
   m_ObjectHideFlags: 0
@@ -11756,7 +11704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36d5ff6004327db40867c605803be74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulator: {fileID: 194662684}
+  simulator: {fileID: 312289907}
 --- !u!1001 &1722495360
 PrefabInstance:
   m_ObjectHideFlags: 0

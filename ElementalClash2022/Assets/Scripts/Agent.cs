@@ -1,39 +1,28 @@
 using UnityEngine;
-using Unity.MLAgents;
-using Unity.MLAgents.Sensors;
-using Unity.MLAgents.Actuators;
+//using Unity.MLAgents;
+//using Unity.MLAgents.Sensors;
+//using Unity.MLAgents.Actuators;
 
-public class MLAgent : Agent
+public class Agent : MonoBehaviour
 {
-    public GameObject gMaster;
-    public Player mlAgent;
-    private BonusManager bonusManager;
-    private GameMaster gameMaster;
-    private PlayerUnit [] playerUnits;
-    private MLAgentUnit [] mlAgentUnits;
     public Directioner rightDirectioner;
     public Directioner rightTopDirectioner;
     public Directioner rightBottomDirectioner;
     public Directioner leftCenterDirectioner;
+    public Player mlAgent;
+    public BonusManager bonusManager;
+    private GameMaster gameMaster;
+    private PlayerUnit [] playerUnits;
+    private MLAgentUnit [] mlAgentUnits;
     public int lastPlayerScore;
     public int lastMLAgentscore;
 
     void Start()
     {
-        lastMLAgentscore = 0;
-        lastPlayerScore = 0;
-        bonusManager = gMaster.GetComponent<BonusManager>();
-        gameMaster = gMaster.GetComponent<GameMaster>();
-
+       
     }
     
-    void Update()
-    {
-        AddReward(0.001f);
-        CheckReward();
-    }
-
-    public override void CollectObservations(VectorSensor sensor)
+    /*    public override void CollectObservations(VectorSensor sensor)
     {
         bool leftDirectioner = gameMaster.GetLeftDirectioner();
         bool leftBottomDirectioner = gameMaster.GetLeftBottomDirectioner();
@@ -110,17 +99,17 @@ public class MLAgent : Agent
         if (gameMaster.pointsCounter.GetPlayerScore() != lastPlayerScore)
         {
             lastPlayerScore++;
-            AddReward(-5f);
-            EndEpisode();
+            //AddReward(-5f);
+            //EndEpisode();
         }
         else if(gameMaster.pointsCounter.GetMLAgentScore() != lastMLAgentscore)
         {
             lastMLAgentscore++;
-            AddReward(10f);
-            EndEpisode();
+            //AddReward(10f);
+            //EndEpisode();
         }
     }
-
+*/
     public void ChangeRightDirectioner()
     {
         rightDirectioner.OnClickDirectioner();
@@ -136,7 +125,7 @@ public class MLAgent : Agent
     public void ChangeRightBottomDirectioner()
     {
         rightBottomDirectioner.OnClickDirectioner();
-        gameMaster.ChangeRightBottomDirectioner();
+        GameMaster.Instance.ChangeRightBottomDirectioner();
     }
 
     public void ChangeLeftCenterDirectioner()
@@ -148,19 +137,16 @@ public class MLAgent : Agent
     public void UseWallBonus()
     {
             bonusManager.MlAgentWallBonus();
-            AddReward(0.5f);
     }
 
     public void UseThreeSegBonus()
     {
             bonusManager.MlAgentUseThreeSegBonus();
-            AddReward(0.5f);
     }
 
     public void UseDuplicateBonus()
     {
             bonusManager.MlAgentDuplicateBonus();
-            AddReward(0.5f);
     }
 
     public void SetFireElement()

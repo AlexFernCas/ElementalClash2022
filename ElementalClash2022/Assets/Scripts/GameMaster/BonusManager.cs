@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BonusManager : MonoBehaviour
 {
-
+    public static BonusManager Instance;
     public GameObject bonusPrefab;
     public Player user;
     public Player mlAgent;
@@ -25,6 +25,11 @@ public class BonusManager : MonoBehaviour
 
     public void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        Instance = this;
         mlAgentDuplicateActive = false;
         mlAgentWallActive = false;
         mlAgentThreeSegActive = false;

@@ -7,6 +7,11 @@ public class GameMaster : MonoBehaviour
         public Player mlAgent;
         public Elemental[] elements;
         public PointsCounter pointsCounter;
+
+        public Directioner rightDir;
+        public Directioner rightTopDir;
+        public Directioner rightBottomDir;
+        public Directioner leftCenterDir;
         public bool leftDirectioner;
         public bool leftBottomDirectioner;
         public bool leftTopDirectioner;
@@ -91,17 +96,20 @@ public class GameMaster : MonoBehaviour
 
     public void ChangeRightDirectioner ()
     {
+        rightDir.OnClickDirectioner();
         rightDirectioner = !rightDirectioner;
     }
 
     public void ChangeRightTopDirectioner()
     {
         rightTopDirectioner = !rightTopDirectioner;
+        rightTopDir.OnClickDirectioner();
     }
 
     public void ChangeRightBottomDirectioner()
     {
         rightBottomDirectioner = !rightBottomDirectioner;
+        rightBottomDir.OnClickDirectioner();
     }
 
     public void ChangeRightCenterDirectioner()
@@ -126,6 +134,7 @@ public class GameMaster : MonoBehaviour
     public void ChangeLeftCenterDirectioner()
     {
         leftCenterDirectioner = !leftCenterDirectioner;
+        leftCenterDir.OnClickDirectioner();
     }
 
     public bool GetLeftDirectioner()
