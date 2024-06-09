@@ -63,11 +63,6 @@ public class Player : MonoBehaviour
                 Scored();
                 yield return new WaitForSeconds(wavesTimer);  
             }
-                
-            /*if (gameObject.CompareTag("Agent"))
-            {
-               RandomElement();
-            }*/
 
             if (currentElement != Element.None)
             {
